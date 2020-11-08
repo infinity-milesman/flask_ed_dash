@@ -1,2 +1,4 @@
 ed_dash_venv/
+__pycache__/
 
+.idea
