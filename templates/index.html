@@ -13,6 +13,12 @@
 
 {% if session['logged_in'] %}
 <h5>Welcome, {{ session['username'] }}</h5>
+ <h1>Transform a file demo</h1>
+
+                <form action="/transform" method="post" enctype="multipart/form-data">
+                    <input type="file" name="data_file" />
+                    <input type="submit" />
+                </form>
 {% endif %}
 
 {% for message in get_flashed_messages() %}

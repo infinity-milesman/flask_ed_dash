@@ -1,3 +1,5 @@
+import csv
+
 from flask import render_template, request, flash, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import redirect
@@ -75,3 +77,17 @@ def logout():
     session['logged_in'] = False
     # redirecting to home page
     return redirect(url_for('index_page'))
+
+import io
+@app.route('/transform',methods=['POST','OPTIONS'])
+def transform_csv():
+    file = request.files['data_file']
+    if not file:
+        return "No file given."
+    stream = io.StringIO(file.stream.read().decode('UTF8'),newline=None)
+    csv_input = csv.reader(stream)
+    for row in csv_input:
+        print(row)
+    #Write your things here.
+    return "Successfull."
+
